@@ -47,20 +47,13 @@ jobs:
           echo "## Coverage (Python ${{ matrix.python-version }})" >> $GITHUB_STEP_SUMMARY
           python -m coverage report --format=markdown >> $GITHUB_STEP_SUMMARY 2>/dev/null || echo "_Coverage data unavailable_" >> $GITHUB_STEP_SUMMARY
 
-      - name: Test summary
-        uses: test-summary/test-summary@v2
-        if: always()
-        with:
-          paths: chess_engine/test-results.xml
-
       - name: Publish test results
-        uses: dorny/test-reporter@v1
+        uses: mikepenz/action-junit-report@v4
         if: always()
         with:
-          name: Pytest (Python ${{ matrix.python-version }})
-          path: chess_engine/test-results.xml
-          reporter: java-junit
-          fail-on-error: false
+          report_paths: chess_engine/test-results.xml
+          check_name: Pytest (Python ${{ matrix.python-version }})
+          fail_on_failure: false
 
       - name: Upload test artifacts
         uses: actions/upload-artifact@v4
