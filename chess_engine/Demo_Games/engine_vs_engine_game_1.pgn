@@ -1,0 +1,42 @@
+[Event "Computer chess game"]
+[Site "BRYCECOMPUTER"]
+[Date "2026.05.07"]
+[Round "?"]
+[White "Lamar_engine"]
+[Black "Lamar_engine"]
+[Result "0-1"]
+[BlackElo "2000"]
+[ECO "D02"]
+[Opening "Queen's Pawn"]
+[Time "04:27:37"]
+[Variation "2.Nf3 Nf6"]
+[WhiteElo "2000"]
+[TimeControl "300"]
+[Termination "time forfeit"]
+[PlyCount "254"]
+[WhiteType "program"]
+[BlackType "program"]
+
+1. d4 Nf6 2. Nf3 d5 3. Qd3 Qd6 4. Nc3 Na6 5. Nb5 Qb6 6. a3 g6 7. e3 Bf5 8.
+Qb3 c6 9. Ne5 e6 10. Nc3 Qxb3 11. cxb3 Nc7 12. Bd2 Bd6 13. f4 O-O 14. Be2
+Bxe5 15. fxe5 Ne4 16. Nxe4 Bxe4 17. O-O Rfd8 18. Rac1 a6 19. Bb4 Nb5 20.
+Bc5 Rac8 21. a4 Nc7 22. Rf6 Bf5 23. Bf3 Ne8 24. Rxf5 gxf5 25. Be7 Rd7 26.
+Bb4 f6 27. Bc5 fxe5 28. dxe5 Nc7 29. Rd1 Kg7 30. Bd6 Ne8 31. Bc5 Nc7 32.
+Bd6 Rcd8 33. Rd4 Ra8 34. Rb4 Rb8 35. a5 Kg8 36. Be2 Rf7 37. Rb6 Rd7 38. b4
+Rxd6 39. exd6 Na8 40. d7 Nxb6 41. axb6 Rd8 42. g4 Rxd7 43. gxf5 exf5 44.
+Kf2 Re7 45. Bd3 Kg7 46. Kf3 Kf6 47. Kf4 Re5 48. Kf3 h6 49. Kf4 Ke6 50. Kf3
+Kf6 51. Kf4 Ke6 52. Kf3 h5 53. Kf4 h4 54. Kf3 Kf6 55. h3 Ke6 56. Kf4 Kf6
+57. Kf3 Kg5 58. Kf2 Re8 59. Kf3 Re6 60. Kf2 Re8 61. Kf3 Re6 62. Kf2 Kf6 63.
+Kf3 Re5 64. Kf4 Ke6 65. Kg5 Kd6 66. Kf4 Ke6 67. Bc2 a5 68. bxa5 c5 69. Kf3
+Kf6 70. Kf4 d4 71. a6 bxa6 72. b7 Re8 73. exd4 cxd4 74. Bxf5 Kg7 75. Bd3 a5
+76. Bf5 Rf8 77. Ke5 Rd8 78. Bd3 Kh8 79. Be4 Kg7 80. Bd3 Kh8 81. Be4 a4 82.
+Bc6 Kg7 83. Bxa4 d3 84. Ke4 d2 85. Bd1 Rb8 86. Kd3 Rxb7 87. Kxd2 Rxb2+ 88.
+Ke3 Rb6 89. Bc2 Rd6 90. Bf5 Rb6 91. Bc2 Rd6 92. Bf5 Rc6 93. Bd3 Rc8 94. Bf5
+Rb8 95. Bc2 Rc8 96. Bf5 Rb8 97. Bc2 Rf8 98. Bd3 Re8+ 99. Be4 Rf8 100. Bd5
+Rf5 101. Bg2 Rg5 102. Kf2 Re5 103. Kf1 Rh5 104. Kf2 Re5 105. Kf1 Kg8 106.
+Kf2 Rg5 107. Kf1 Rf5+ 108. Kg1 Rg5 109. Kh2 Kg7 110. Kh1 Re5 111. Bf3 Re1+
+112. Kh2 Re5 113. Kg1 Rg5+ 114. Kh2 Re5 115. Kg1 Rg5+ 116. Kh2 Kg8 117. Bg2
+Rc5 118. Kh1 Rc1+ 119. Kh2 Rc2 120. Kh1 Rd2 121. Bf3 Kg7 122. Kg1 Rd8 123.
+Kh1 Rd7 124. Kg1 Rd8 125. Kh1 Rd7 126. Kg1 Rd4 127. Kh1 Rd8 128. ... {White
+forfeits on time} 0-1
+
