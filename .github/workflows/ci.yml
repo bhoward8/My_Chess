@@ -38,8 +38,14 @@ jobs:
             --junitxml=test-results.xml \
             --cov=engine \
             --cov-report=term-missing \
-            --cov-report=xml:coverage.xml \
-            --cov-report=md:/dev/stdout >> $GITHUB_STEP_SUMMARY
+            --cov-report=xml:coverage.xml
+
+      - name: Write coverage to job summary
+        if: always()
+        working-directory: chess_engine
+        run: |
+          echo "## Coverage (Python ${{ matrix.python-version }})" >> $GITHUB_STEP_SUMMARY
+          python -m coverage report --format=markdown >> $GITHUB_STEP_SUMMARY 2>/dev/null || echo "_Coverage data unavailable_" >> $GITHUB_STEP_SUMMARY
 
       - name: Publish test results
         uses: dorny/test-reporter@v1
