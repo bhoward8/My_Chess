@@ -10,6 +10,9 @@ jobs:
   test:
     name: Test (Python ${{ matrix.python-version }})
     runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      pull-requests: write
 
     strategy:
       matrix:
@@ -30,4 +33,28 @@ jobs:
 
       - name: Run tests
         working-directory: chess_engine
-        run: python -m pytest tests/ -v
+        run: |
+          python -m pytest tests/ -v \
+            --junitxml=test-results.xml \
+            --cov=engine \
+            --cov-report=term-missing \
+            --cov-report=xml:coverage.xml \
+            --cov-report=md:/dev/stdout >> $GITHUB_STEP_SUMMARY
+
+      - name: Publish test results
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: Pytest (Python ${{ matrix.python-version }})
+          path: chess_engine/test-results.xml
+          reporter: java-junit
+          fail-on-error: false
+
+      - name: Upload test artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results-${{ matrix.python-version }}
+          path: |
+            chess_engine/test-results.xml
+            chess_engine/coverage.xml
