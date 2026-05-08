@@ -40,6 +40,10 @@ jobs:
             --cov-report=term-missing \
             --cov-report=xml:coverage.xml
 
+      - name: Write detailed test summary
+        if: always()
+        run: python scripts/generate_summary.py chess_engine/test-results.xml
+
       - name: Write coverage to job summary
         if: always()
         working-directory: chess_engine
