@@ -58,3 +58,57 @@ def test_finds_mate_in_two():
     move, score = find_best_move(board, depth=4)
     assert move == chess.Move.from_uci("f1f8")
     assert score == 99999
+
+
+# ---------------------------------------------------------------------------
+# Error handling
+# ---------------------------------------------------------------------------
+
+def test_find_best_move_raises_on_no_legal_moves():
+    # Smothered mate: White Nf7 checkmates Black Kh8 — no legal moves.
+    board = chess.Board("6rk/5Npp/8/8/8/8/8/7K b - - 0 1")
+    with pytest.raises(ValueError, match="No legal moves"):
+        find_best_move(board)
+
+
+# ---------------------------------------------------------------------------
+# Draw detection inside negamax
+# ---------------------------------------------------------------------------
+
+def test_negamax_stalemate_branch():
+    # White Kc6, Qb7 vs Black Ka8.  Qb7-b6 leads to stalemate (Ka8 has no
+    # legal moves and is not in check), so negamax returns 0 for that branch.
+    board = chess.Board("k7/1Q6/2K5/8/8/8/8/8 w - - 0 1")
+    move, _ = find_best_move(board, depth=2)
+    assert move in board.legal_moves
+
+
+def test_negamax_insufficient_material_branch():
+    # KvK is always insufficient material; every child node returns 0.
+    board = chess.Board("8/8/4k3/8/8/4K3/8/8 w - - 0 1")
+    move, score = find_best_move(board, depth=2)
+    assert move in board.legal_moves
+    assert score == 0
+
+
+def test_negamax_fifty_move_rule_branch():
+    # halfmove clock at 99: any non-capture king/rook move pushes it to 100,
+    # triggering is_fifty_moves() → return 0 in the child node.
+    board = chess.Board("8/3k4/8/8/8/8/8/R2K4 w - - 99 1")
+    move, score = find_best_move(board, depth=2)
+    assert move in board.legal_moves
+    assert score == 0
+
+
+def test_negamax_repetition_branch():
+    # Two full Rd2/Kd3 vs Kd7 oscillations build a history where the third
+    # occurrence of each position triggers is_repetition() → return 0.
+    board = chess.Board("8/3k4/8/8/8/3K4/3R4/8 w - - 0 1")
+    for _ in range(2):
+        board.push(chess.Move.from_uci("d2e2"))
+        board.push(chess.Move.from_uci("d7e7"))
+        board.push(chess.Move.from_uci("e2d2"))
+        board.push(chess.Move.from_uci("e7d7"))
+    # After two oscillations Rd2→e2 now visits a position for the 3rd time.
+    move, _ = find_best_move(board, depth=2)
+    assert move in board.legal_moves

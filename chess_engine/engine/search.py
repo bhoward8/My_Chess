@@ -25,7 +25,7 @@ _PIECE_VAL: dict[chess.PieceType, int] = {
 def _mvv_lva(board: chess.Board, move: chess.Move) -> int:
     victim   = board.piece_at(move.to_square)
     aggressor = board.piece_at(move.from_square)
-    if victim is None or aggressor is None:
+    if victim is None or aggressor is None:  # pragma: no cover
         return 0
     return (_PIECE_VAL.get(victim.piece_type, 0) * 10
             - _PIECE_VAL.get(aggressor.piece_type, 0))

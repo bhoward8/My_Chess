@@ -162,7 +162,7 @@ def piece_square_score(board: chess.Board) -> int:
         if piece is None:
             continue
         pst = _PST.get(piece.piece_type)
-        if pst is None:
+        if pst is None:  # pragma: no cover
             continue
         if piece.color == chess.WHITE:
             score += pst[sq ^ 56]

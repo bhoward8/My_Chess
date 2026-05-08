@@ -342,3 +342,11 @@ def test_see_non_capture_returns_zero():
     # Quiet moves have no victim; SEE must return 0 without error.
     board = chess.Board()
     assert static_exchange_eval(board, chess.Move.from_uci("e2e4")) == 0
+
+
+def test_see_promotion_capture():
+    # White pawn e7 captures undefended Black rook d8 with queen promotion.
+    # The promotion branch sets current_piece_value to the promoted queen's value.
+    # No Black defenders remain, so SEE = value of the captured rook = 5.
+    board = chess.Board("3r4/4P3/8/8/8/8/8/K6k w - - 0 1")
+    assert static_exchange_eval(board, chess.Move.from_uci("e7d8q")) == 5

@@ -64,3 +64,25 @@ def test_hanging_knight_scores_worse_than_defended():
     board_defended = chess.Board("8/7k/8/3b4/4N3/3P4/8/6K1 w - - 0 1")
 
     assert evaluate(board_hanging) < evaluate(board_defended)
+
+
+# ---------------------------------------------------------------------------
+# Insufficient material
+# ---------------------------------------------------------------------------
+
+def test_insufficient_material_returns_zero():
+    # KvK: no side can force checkmate; evaluate must return 0.
+    board = chess.Board("8/8/4k3/8/8/4K3/8/8 w - - 0 1")
+    assert evaluate(board) == 0
+
+
+# ---------------------------------------------------------------------------
+# mobility_score — Black-to-move branch
+# ---------------------------------------------------------------------------
+
+def test_evaluate_with_black_to_move():
+    # After 1.e4 it is Black's turn; this exercises the `else` branch in
+    # mobility_score (board.turn == BLACK).
+    board = chess.Board("rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1")
+    score = evaluate(board)
+    assert isinstance(score, int)
